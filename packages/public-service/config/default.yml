@@ -1,0 +1,15 @@
+server:
+  port: 3000
+  enable_swagger: true
+
+jwt:
+  expiresIn: 518400
+  secret: 'topSecret51-default'
+
+subscription_config:
+  service_url: 'http://localhost:3001/api'
+  add_subs: 'subscriptions'
+  cancel_subs: 'subscriptions'
+  details_subs: 'subscriptions'
+  all_subs: 'subscriptions'
+

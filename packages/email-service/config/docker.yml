@@ -1,0 +1,3 @@
+event-conf:
+  urls:
+    - 'amqp://challenge:challenge@rabbitmq-challenge:5672'

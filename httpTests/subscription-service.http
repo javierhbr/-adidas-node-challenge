@@ -1,0 +1,64 @@
+# curl -X 'POST'
+#  'http://localhost:3001/api/auth/login'
+#  -H 'accept: application/json'
+#  -H 'Content-Type: application/json'
+#  -d '{
+#  "username": "string",
+#  "password": "Abcd1234"
+#}'
+POST http://localhost:3001/api/auth/login
+accept: application/json
+Content-Type: application/json
+
+{
+  "username": "string",
+  "password": "Abcd1234"
+}
+
+###
+
+# Create a new subscription
+POST http://localhost:3001/api/subscriptions
+accept: application/json
+Content-Type: application/json
+
+{
+  "email": "email@test.com",
+  "firstName": "string",
+  "dateOfBird": "1970-01-01",
+  "isConsent": true,
+  "newsletterId": "string"
+}
+
+###
+
+
+# curl -X 'DELETE'
+#  'http://localhost:3001/api/subscriptions/ID'
+#  -H 'accept: application/json'
+DELETE http://localhost:3001/api/subscriptions/{ID}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0cmluZyIsImxhc3RMb2dpbiI6IjIwMjEtMDMtMjQgMjA6MjQ6NTEiLCJsb2dpbkRhdGUiOiIyMDIxLTAzLTI0IDIwOjI0OjUxIiwiZXhwaXJlc0luIjoiMzYwZCIsImV4cGlyZURhdGUiOiIyMDIyLTAzLTE5IDIwOjI0OjUxIiwiaWF0IjoxNjE2NjE3NDkxLCJleHAiOjE2MTY2MjEwOTF9.h-9Q_dvQ0a_qGGUHXLyE7qOeINXPDdOQ37a8Cl8CFMc
+accept: application/json
+
+###
+
+
+# curl -X 'GET'
+#  'http://localhost:3001/api/subscriptions/ID'
+#  -H 'accept: application/json'
+GET http://localhost:3001/api/subscriptions/{ID}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0cmluZyIsImxhc3RMb2dpbiI6IjIwMjEtMDMtMjQgMjA6MjQ6NTEiLCJsb2dpbkRhdGUiOiIyMDIxLTAzLTI0IDIwOjI0OjUxIiwiZXhwaXJlc0luIjoiMzYwZCIsImV4cGlyZURhdGUiOiIyMDIyLTAzLTE5IDIwOjI0OjUxIiwiaWF0IjoxNjE2NjE3NDkxLCJleHAiOjE2MTY2MjEwOTF9.h-9Q_dvQ0a_qGGUHXLyE7qOeINXPDdOQ37a8Cl8CFMc
+accept: application/json
+
+###
+
+
+# curl -X 'GET'
+#  'http://localhost:3001/api/subscriptions?page=0&sizePage=1'
+#  -H 'accept: application/json'
+GET http://localhost:3001/api/subscriptions?page=0&sizePage=1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InN0cmluZyIsImxhc3RMb2dpbiI6IjIwMjEtMDMtMjQgMjA6MjQ6NTEiLCJsb2dpbkRhdGUiOiIyMDIxLTAzLTI0IDIwOjI0OjUxIiwiZXhwaXJlc0luIjoiMzYwZCIsImV4cGlyZURhdGUiOiIyMDIyLTAzLTE5IDIwOjI0OjUxIiwiaWF0IjoxNjE2NjE3NDkxLCJleHAiOjE2MTY2MjEwOTF9.h-9Q_dvQ0a_qGGUHXLyE7qOeINXPDdOQ37a8Cl8CFMc
+accept: application/json
+
+###
+

@@ -1,0 +1,29 @@
+{
+  "name": "adidas-challenge",
+  "private": true,
+  "scripts": {
+    "build": "lerna run build",
+    "test": "lerna run test",
+    "test:cov": "lerna run test:cov",
+    "test:ci:cov": "lerna run test:ci:cov",
+    "test:ci:int": "lerna run test:ci:int",
+    "bootstrap": "lerna bootstrap",
+    "husky": "npm run lint && npm run precise-commits",
+    "lint": "lerna run lint",
+    "format": "lerna run format",
+    "publish:ci": "lerna exec --no-private -- npm publish",
+    "build:doc": "lerna run build:doc"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run husky"
+    }
+  },
+  "dependencies": {
+    "husky": "^5.0.9",
+    "lerna": "^3.22.1"
+  },
+  "devDependencies": {
+    "semver": "^7.3.4"
+  }
+}

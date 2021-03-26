@@ -1,0 +1,32 @@
+version: "3.6"
+services:
+  public-service:
+    build: packages/public-service/
+    image: subscription-public-service
+    container_name: subscription-public-service
+    ports:
+      - 3000:3000
+    networks:
+      - challenge-network
+
+  subscription-service:
+    build: packages/subscription-service/
+    image: subscription-service
+    container_name: subscription-service
+    ports:
+      - 3001:3001
+    networks:
+      - challenge-network
+
+  email-service:
+    build: packages/email-service/
+    image: email-service
+    container_name: email-service
+    ports:
+      - 3002:3002
+    networks:
+      - challenge-network
+
+networks:
+  challenge-network:
+    driver: bridge

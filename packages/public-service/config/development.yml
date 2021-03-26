@@ -1,0 +1,6 @@
+subscription_config:
+  service_url: 'http://subscription-service:3001/api'
+
+jwt:
+  expiresIn: 3600
+  secret: 'topSecret51-dev'

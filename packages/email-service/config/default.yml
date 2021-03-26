@@ -1,0 +1,9 @@
+jwt:
+  expiresIn: 3600
+  secret: 'topSecret51-default'
+
+event-conf:
+  urls:
+    - 'amqp://challenge:challenge@localhost:5672'
+  queue: newsletter_notification
+  patter: notification-mq-action

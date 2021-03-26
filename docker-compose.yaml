@@ -1,0 +1,68 @@
+version: "3.6"
+services:
+
+  rabbitmq-challenge:
+    image: 'rabbitmq:3.6-management-alpine'
+    container_name: rabbitmq-challenge
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      AMQP_URL: 'amqp://rabbitmq?connection_attempts=5&retry_delay=5'
+      RABBITMQ_DEFAULT_USER: challenge
+      RABBITMQ_DEFAULT_PASS: challenge
+    networks:
+      - challenge-network
+
+  mongo-challenge:
+    image: mongo:latest
+    container_name: mongo-challenge
+    ports:
+      - 27018:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    networks:
+      - challenge-network
+
+  public-service:
+    build: packages/public-service/
+    image: subscription-public-service
+    container_name: subscription-public-service
+    ports:
+      - 3000:3000
+    environment:
+      NODE_ENV: docker
+    networks:
+      - challenge-network
+
+  subscription-service:
+    build: packages/subscription-service/
+    image: subscription-service
+    container_name: subscription-service
+    ports:
+      - 3001:3001
+    environment:
+      NODE_ENV: docker
+    depends_on:
+      - rabbitmq-challenge
+      - mongo-challenge
+    networks:
+      - challenge-network
+
+  email-service:
+    build: packages/email-service/
+    image: email-service
+    container_name: email-service
+    ports:
+      - 3002:3002
+    environment:
+      NODE_ENV: docker
+    depends_on:
+      - rabbitmq-challenge
+    networks:
+      - challenge-network
+
+networks:
+  challenge-network:
+    driver: bridge

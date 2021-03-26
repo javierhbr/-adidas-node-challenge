@@ -1,0 +1,6 @@
+mongo:
+  mongoUri: 'mongodb://root:rootpassword@mongo-challenge:27017'
+
+notification-conf:
+  urls:
+    - 'amqp://challenge:challenge@rabbitmq-challenge:5672'

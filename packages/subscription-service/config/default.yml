@@ -1,0 +1,23 @@
+server:
+  port: 3001
+  enable_swagger: true
+
+jwt:
+  expiresIn: 3600
+  secret: 'topSecret51-default'
+
+mongo:
+  mongoUri: 'mongodb://root:rootpassword@localhost:27018'
+  retryAttempts: 10
+  retryDelay: 3000
+
+
+notification-conf:
+  client-name: 'notification-mq-action'
+  urls:
+    - 'amqp://challenge:challenge@localhost:5672'
+  queue: newsletter_notification
+  pattern: 'notification-mq-action'
+
+
+

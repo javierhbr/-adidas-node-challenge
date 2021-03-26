@@ -1,0 +1,18 @@
+{
+  "packages": [
+    "packages/*"
+  ],
+  "version": "1.0.0",
+  "command": {
+    "version": {
+      "allowBranch": [
+        "master",
+        "develop",
+        "hotfix/*",
+        "release/*",
+        "publish"
+      ],
+      "message": "chore(release): publish %s"
+    }
+  }
+}

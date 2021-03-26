@@ -1,0 +1,838 @@
+  ---
+info:
+  description: API documentation for foodPlatform
+  title: Swagger
+  version: 1.0.0
+host: localhost:3000
+basePath: "/api"
+produces:
+  - application/json
+schemes:
+  - http
+swagger: '2.0'
+paths:
+  "/auth/login":
+    get:
+      security:
+        - basicAuth: []
+      description: ''
+      tags:
+        - Security
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            "$ref": "#/definitions/Token"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+  "/auth/refresh-token":
+    get:
+      security:
+        - token: []
+      description: ''
+      tags:
+        - Security
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            "$ref": "#/definitions/Token"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+  "/providers":
+    post:
+      deprecated: true
+      security:
+        - token: []
+      parameters:
+        - name: body
+          in: body
+          description: body
+          required: true
+          schema:
+            "$ref": "#/definitions/Provider"
+      description: ''
+      tags:
+        - Providers
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            "$ref": "#/definitions/OPStatus"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+    get:
+      operationId: getProvidersByGeo
+      deprecated: true
+      security:
+        - token: []
+      parameters:
+        - name: lat
+          in: query
+          description: "Latitude"
+          type: number
+          required: false
+        - name: lon
+          in: query
+          description: "longitude"
+          type: number
+          required: false
+        - name: category
+          in: query
+          description: "categories"
+          type: number
+          required: false
+      description: ''
+      tags:
+        - Providers
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/Provider"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+    put:
+      deprecated: true
+      security:
+        - token: []
+      parameters:
+        - name: body
+          in: body
+          description: body
+          required: true
+          schema:
+            "$ref": "#/definitions/Provider"
+      description: ''
+      tags:
+        - Providers
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            "$ref": "#/definitions/Provider"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+
+  "/providers/{providerId}/product/{productId}":
+    get:
+      operationId: getProductByIdAndProviderId
+      security:
+        - token: []
+      parameters:
+        - name: providerId
+          in: path
+          description: "providerId"
+          type: number
+          required: true
+        - name: productId
+          in: path
+          description: "productId"
+          type: number
+          required: true
+      description: ''
+      tags:
+        - Providers
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            "$ref": "#/definitions/Provider"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+    delete:
+      operationId: deleteProductByIdAndProviderId
+      security:
+        - token: []
+      parameters:
+        - name: providerId
+          in: path
+          description: "providerId"
+          type: number
+          required: true
+        - name: productId
+          in: path
+          description: "productId"
+          type: number
+          required: true
+      description: ''
+      tags:
+        - Providers
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            "$ref": "#/definitions/Provider"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+
+  "/providers/{providerId}/product":
+    get:
+      operationId: getProductByProviderId
+      security:
+        - token: []
+      parameters:
+        - name: providerId
+          in: path
+          description: "Latitude"
+          type: number
+          required: true
+        - name: lat
+          in: query
+          description: "Latitude"
+          type: number
+          required: false
+        - name: lon
+          in: query
+          description: "longitude"
+          type: number
+          required: false
+        - name: category
+          in: query
+          description: "categories"
+          type: number
+          required: false
+      description: ''
+      tags:
+        - Providers
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            "$ref": "#/definitions/Provider"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+  "/providers/{providerId}":
+    get:
+      deprecated: true
+      operationId: getProductById
+      security:
+        - token: []
+      parameters:
+        - name: providerId
+          in: path
+          description: "providerId"
+          type: number
+          required: true
+      description: ''
+      tags:
+        - Providers
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            "$ref": "#/definitions/Provider"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+    delete:
+      deprecated: true
+      operationId: deleteProductById
+      security:
+        - token: []
+      parameters:
+        - name: providerId
+          in: path
+          description: "providerId"
+          type: number
+          required: true
+      description: ''
+      tags:
+        - Providers
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            "$ref": "#/definitions/Provider"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+
+  "/orders":
+    post:
+      security:
+        - token: []
+      description: ''
+      parameters:
+        - name: body
+          in: body
+          description: body
+          required: true
+          schema:
+            "$ref": "#/definitions/Order"
+
+      tags:
+        - Orders
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/Token"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+  "/orders/{orderId}":
+    get:
+      security:
+        - token: []
+      description: ''
+      parameters:
+        - name: orderId
+          in: path
+          description: "Order ID"
+          type: string
+          required: true
+      tags:
+        - Orders
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            "$ref": "#/definitions/Token"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+    delete:
+      security:
+        - token: []
+      description: ''
+      parameters:
+        - name: orderId
+          in: path
+          description: "Order ID"
+          type: string
+          required: true
+      tags:
+        - Orders
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            "$ref": "#/definitions/Token"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+    patch:
+      security:
+        - token: []
+      parameters:
+        - name: orderId
+          in: path
+          description: "Order ID"
+          type: string
+          required: true
+        - name: body
+          in: body
+          description: body
+          required: true
+          schema:
+            "$ref": "#/definitions/Provider"
+      description: ''
+      tags:
+        - Oders
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            "$ref": "#/definitions/OPStatus"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+
+  "/clients":
+    post:
+      security:
+        - token: []
+      description: ''
+      parameters:
+        - name: body
+          in: body
+          description: body
+          required: true
+          schema:
+            "$ref": "#/definitions/Client"
+      tags:
+        - Clients
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            "$ref": "#/definitions/Client"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+
+  "/clients/{clientId}":
+    get:
+      security:
+        - token: []
+      description: ''
+      parameters:
+        - name: clientId
+          in: path
+          description: "client ID"
+          type: string
+          required: true
+      tags:
+        - Clients
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            "$ref": "#/definitions/Client"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+    delete:
+      security:
+        - token: []
+      description: ''
+      parameters:
+        - name: clientId
+          in: path
+          description: "client ID"
+          type: string
+          required: true
+      tags:
+        - Clients
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            "$ref": "#/definitions/Client"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+
+  "/clients/{clientId}/orders":
+    get:
+      security:
+        - token: []
+      description: ''
+      parameters:
+        - name: clientId
+          in: path
+          description: "client ID"
+          type: string
+          required: true
+      tags:
+        - Clients
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/Order"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+
+  "/clients/{clientId}/provider":
+    get:
+      security:
+        - token: []
+      description: ''
+      parameters:
+        - name: clientId
+          in: path
+          description: "client ID"
+          type: string
+          required: true
+      tags:
+        - Clients
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/Provider"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+
+  "/clients/{clientId}/product":
+    get:
+      security:
+        - token: []
+      description: ''
+      parameters:
+        - name: clientId
+          in: path
+          description: "client ID"
+          type: string
+          required: true
+      tags:
+        - Clients
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/Product"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+
+  "/clients/{clientId}/product/{productId}":
+    delete:
+      security:
+        - token: []
+      description: ''
+      parameters:
+        - name: clientId
+          in: path
+          description: "client ID"
+          type: string
+          required: true
+        - name: productId
+          in: path
+          description: "client ID"
+          type: string
+          required: true
+      tags:
+        - Clients
+      responses:
+        '204':
+          description: Successful operation
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+
+  "/clients/{clientId}/provider/{providerId}":
+    delete:
+      security:
+        - token: []
+      description: ''
+      parameters:
+        - name: clientId
+          in: path
+          description: "client ID"
+          type: string
+          required: true
+        - name: providerId
+          in: path
+          description: "client ID"
+          type: string
+          required: true
+      tags:
+        - Clients
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/Product"
+        '500':
+          description: Error
+          schema:
+            "$ref": "#/definitions/OPStatus"
+
+definitions:
+  Token:
+    type: object
+    properties:
+      accessToken:
+        type: string
+      refreshToken:
+        type: string
+
+  Provider:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      address:
+        type: string
+      category:
+        type: array
+        items:
+          "$ref": "#/definitions/ProviderCategory"
+      paymentMethod:
+        type: array
+        items:
+          "$ref": "#/definitions/PaymentMethod"
+      geo:
+        "$ref": "#/definitions/GeoLocation"
+      avatarPictureUrl:
+        type: string
+        example: "picture URL"
+      morePictureUrl:
+        type: array
+        items:
+          type: string
+        example: ["URL1", "URL2", "URL3"]
+      isOpen:
+        type: boolean
+      rating:
+        type: number
+        example: 4.2
+      products:
+        type: array
+        items:
+          "$ref": "#/definitions/Product"
+
+  ProviderCategory:
+    type: object
+    properties:
+      code:
+        type: string
+        description: "MEXICAN"
+      name:
+        type: string
+        description: "Mexican"
+
+  ProductCategory:
+    type: object
+    properties:
+      code:
+        type: string
+        description: "ICECREAM"
+      name:
+        type: string
+        description: "ice cream"
+
+  OrderStatus:
+    type: object
+    properties:
+      code:
+        type: string
+        description: "CREATED"
+      name:
+        type: string
+        example: "created"
+
+  PaymentMethod:
+    type: object
+    properties:
+      code:
+        type: string
+        description: "CARD"
+      name:
+        type: string
+        example: "Credit Card"
+
+  GeoLocation:
+    type: object
+    properties:
+      lat:
+        type: number
+        description: "Latitude"
+      long:
+        type: number
+        description: "Longitude"
+      geoHash:
+        type: string
+        description: "hashed latitude and longitude"
+
+  Order:
+    type: object
+    properties:
+      id:
+        type: string
+        description: "product ID"
+      providerId:
+        type: string
+        description: "provider ID"
+      rating:
+        type: string
+        description: "product name"
+      client:
+        "$ref": "#/definitions/Client"
+      products:
+        type: array
+        items:
+          "$ref": "#/definitions/ProductOrder"
+      createdOn:
+        type: string
+        description: "order request date and time"
+      deliveredOn:
+        type: string
+        description: "date and time of delivery/pick up"
+      scheduledOn:
+        type: string
+        description: "scheduled date and time"
+      deliveryOption:
+        type: string
+        description: "delivery / pick up"
+      total:
+        type: number
+        description: "total amount of the order"
+      status:
+        "$ref": "#/definitions/OrderStatus"
+
+  Client:
+    type: object
+    properties:
+      id:
+        type: string
+        description: "product ID"
+      isLightAccount:
+        type: string
+        description: "provider product ID"
+      createdOn:
+        type: string
+        description: "client created date and time"
+      email:
+        type: string
+        format: email
+        description: "client email"
+      password:
+        type: string
+        format: password
+        description: "client password"
+      address:
+        type: string
+        description: "client address"
+      phone:
+        type: string
+        description: "client address"
+      orders:
+        type: array
+        items:
+          "$ref": "#/definitions/Order"
+        description: "list of Orders gy a client "
+      favLocations:
+        type: array
+        items:
+          "$ref": "#/definitions/FavProduct"
+      ratings:
+        type: array
+        items:
+          "$ref": "#/definitions/Rating"
+
+  FavProduct:
+    type: object
+    properties:
+      providerId:
+        type: string
+      productId:
+        type: string
+
+  Rating:
+    type: object
+    properties:
+      id:
+        type: string
+      ratingType:
+        type: string
+        description: "provider or product"
+      rating:
+        type: number
+
+  ProductOrder:
+    type: object
+    properties:
+      productId:
+        type: string
+        description: "product ID"
+      quantity:
+        type: number
+        description: "quantity of product"
+      subtotal:
+        type: number
+        description: "subtotal of the product"
+
+
+  Product:
+    type: object
+    properties:
+      id:
+        type: string
+        description: "product ID"
+      code:
+        type: string
+        description: "provider product ID"
+      rating:
+        type: string
+        description: "product name"
+      categories:
+        "$ref": "#/definitions/ProductCategory"
+      description:
+        type: string
+      price:
+        type: number
+      discount:
+        type: number
+      availableDays:
+        type: array
+        items:
+          type: number
+        example: [0, 2, 3, 4]
+        description: "[0, 2, 3, 4] = Mon, Wed, Thu, Fri, if empty or null means always available"
+
+  OPStatus:
+    required:
+      - statusCode
+      - status
+      - description
+      - statusType
+      - message
+    properties:
+      statusCode:
+        type: string
+      status:
+        type: string
+      description:
+        type: string
+      statusType:
+        type: string
+      message:
+        type: string
+
+responses: {}
+parameters: {}
+securityDefinitions:
+  basicAuth:
+    type: basic
+  token:
+    type: apiKey
+    name: Bearer
+    in: header
+tags:
+  - name: Providers
+    description: To manage store/Providers  data
+  - name: Orders
+    description: To manage Orders data
+  - name: Clients
+    description: To manage Client data
+  - name: Security
+    description: To implement authorization and access controls
